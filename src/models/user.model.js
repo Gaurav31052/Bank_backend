@@ -21,12 +21,14 @@ const userSchema = new mongoose.Schema({
         select: false
     },
     
-    // createdAt:{
-    //     type: Date
-    // },
-    // updatedAt:{
-    //     type: Date
-    // }
+    createdAt: {
+        type: Date,
+        default: Date.now
+    },
+    updatedAt: {
+        type: Date,
+        default: Date.now
+    }
 
 });
 

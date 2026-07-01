@@ -1,5 +1,6 @@
 const userModel = require("../models/user.model.js");
 const jwt = require("jsonwebtoken");
+const emailService = require("../services/email.service.js");
 
 
 /**
@@ -28,7 +29,9 @@ async function register(req, res) {
     
         // await newUser.save();
         res.cookie("token",token);
+        emailService.sendRegisterationEmail(newUser.email, newUser.name);
         return res.status(201).json({ user : {_id: newUser._id, name: newUser.name, email: newUser.email}, token });
+
     } catch (error) {
         return res.status(500).json({ message: "Internal server error", error });
     }
